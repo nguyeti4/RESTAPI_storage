@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mysql
+    environment:
+      - PORT=3306
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=busses
+      - MYSQL_USER=owner
+      - MYSQL_PASSWORD=hunter2
+  api:
+    build: .
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - PORT=8000
+    ports:
+      - "8000:8000"
